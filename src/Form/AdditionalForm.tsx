@@ -1,4 +1,4 @@
-import { FormCheckbox } from '../Components/FormCheckbox'
+import { FormCheckbox } from '../components/FormCheckbox'
 
 export const AdditionalForm = () => {
   return (
