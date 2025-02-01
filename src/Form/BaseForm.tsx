@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { FormCheckbox } from '../Components/FormCheckbox'
 import { FormInput } from '../Components/FormInput'
 import { AdditionalForm } from './AdditionalForm'
@@ -7,6 +8,7 @@ import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
 
 export const BaseForm = () => {
+  const [success, setSuccess] = useState(false)
   const {
     register,
     handleSubmit,
@@ -27,11 +29,12 @@ export const BaseForm = () => {
     <form
       onSubmit={handleSubmit((baseSchema) => {
         console.log(baseSchema)
+        setSuccess(true)
       })}
     >
       <FormInput label="username" {...register('username')} />
       {errors.username && <p>{String(errors.username.message)}</p>}
-      <FormInput label="password" {...register('password')} />
+      <FormInput label="password" type='password' {...register('password')} />
       {errors.password && <p>{String(errors.password.message)}</p>}
       <FormCheckbox
         label="I agree to the terms and conditions"
@@ -39,6 +42,7 @@ export const BaseForm = () => {
         onValueChange={(v) => setValue('terms', v)}
       />
       {Boolean(watch('terms')) && <AdditionalForm />}
+      {success && <p>Success!</p>}
       <Button type="submit">Submit</Button>
     </form>
   )

@@ -6,7 +6,11 @@ export const baseSchema = v.object({
     v.minLength(3, 'Needs to be at least 3 characters'),
     v.endsWith('cool', 'Needs to end with `cool`'),
   ),
-  password: v.string('password is required'),
+  password: v.pipe(
+    v.string(),
+    v.nonEmpty('Please enter your password.'),
+    v.minLength(8, 'Your password must have 8 characters or more.')
+  ),
   terms: v.boolean('You must agree to the terms and conditions'),
 })
 
