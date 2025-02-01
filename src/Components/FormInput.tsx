@@ -12,7 +12,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   (props, ref) => {
     const { label, description } = props
     return (
-      <div className="w-full max-w-md px-4">
+      <div className="w-full max-w-md">
         <Field>
           <Label className="text-sm/6 font-medium text-white">{label}</Label>
           {description && (
